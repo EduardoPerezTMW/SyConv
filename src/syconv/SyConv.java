@@ -16,6 +16,9 @@ public class SyConv {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        String prueba = "Esta es una prueba";
+        prueba = prueba + " del programa";
+        System.out.println(prueba);
     }
     
 }
