@@ -10,5 +10,11 @@ package controladores;
  * @author Daniel
  */
 public class Calculo {
+    public String resultado;
+    
+    public String realizarOperacion(){
+        String resultado = null;
+        return resultado;
+    }    
     
 }
