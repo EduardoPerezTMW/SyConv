@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package syconv;
 
 /**
  *
  * @author Daniel
  */
-public class Calculo {
-    public String resultado;
-    
-    public String realizarOperacion(){
-        String resultado = null;
-        return resultado;
-    }    
+public class Conversion {
     
 }
