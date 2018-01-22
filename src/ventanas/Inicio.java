@@ -5,17 +5,24 @@
  */
 package ventanas;
 
+import syconv.Conversion;
+import syconv.Operacion;
+
 /**
  *
  * @author Daniel
  */
 public class Inicio extends javax.swing.JFrame {
-
+    Conversion conversion;
+    Operacion operacion;
+    
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+        this.conversion = new Conversion();
+        this.operacion = new Operacion();
     }
 
     /**
@@ -66,6 +73,11 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3.setText("Base final:");
 
         btnConvertir.setText("Convertir");
+        btnConvertir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertirActionPerformed(evt);
+            }
+        });
 
         txtNumeroFinal.setEnabled(false);
         txtNumeroFinal.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +284,16 @@ public class Inicio extends javax.swing.JFrame {
     private void txtResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResultadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtResultadoActionPerformed
+
+    private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
+        // TODO add your handling code here:
+        String numero, resultado, baseInicial, baseFinal;
+        numero = txtNumeroInicial.getText();
+        baseInicial = txtBaseInicial.getText();
+        baseFinal = txtBaseFinal.getText();        
+        resultado = conversion.convertirDecimal(numero);
+        txtNumeroFinal.setText(resultado);
+    }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
      * @param args the command line arguments
