@@ -12,17 +12,12 @@ import syconv.Operacion;
  *
  * @author Daniel
  */
-public class Inicio extends javax.swing.JFrame {
-    Conversion conversion;
-    Operacion operacion;
-    
+public class Inicio extends javax.swing.JFrame {  
     /**
      * Creates new form Inicio
      */
     public Inicio() {
-        initComponents();
-        this.conversion = new Conversion();
-        this.operacion = new Operacion();
+        initComponents();        
     }
 
     /**
@@ -287,11 +282,12 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
         // TODO add your handling code here:
+        Conversion conversion = new Conversion();
         String numero, resultado, baseInicial, baseFinal;
         numero = txtNumeroInicial.getText();
         baseInicial = txtBaseInicial.getText();
         baseFinal = txtBaseFinal.getText();        
-        resultado = conversion.convertirDecimal(numero);
+        resultado = conversion.convertir(numero);
         txtNumeroFinal.setText(resultado);
     }//GEN-LAST:event_btnConvertirActionPerformed
 

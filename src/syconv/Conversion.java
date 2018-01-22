@@ -65,9 +65,25 @@ public class Conversion {
         this.resultadoConversion = resultadoConversion;
     }
     
-    public String convertirDecimal(String resultado){
+    public String convertir(String resultado){
         String res = resultado;
         return res;
+    }
+    
+    public int validarTipoConversion(){
+        return 0;
+    }
+    
+    public String base10_CualquierBase(){
+        return null;
+    }
+    
+    public String cualquierBase_Base10(){
+        return null;
+    }
+    
+    public String CualquierBase_CualquierBase(){
+        return null;
     }
     
 }
