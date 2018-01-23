@@ -5,6 +5,8 @@
  */
 package ventanas;
 
+import java.util.ArrayList;
+import java.lang.Integer;
 import syconv.Conversion;
 import syconv.Operacion;
 
@@ -16,8 +18,15 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    //private boolean hayErroresConversion;
+    private ArrayList<String> datosConversiones;
+    private ArrayList<String> datosOperaciones;
+    
     public Inicio() {
-        initComponents();        
+        initComponents();       
+        //this.hayErroresConversion = false;
+        this.datosConversiones = new ArrayList<String>();
+        this.datosOperaciones = new ArrayList<String>();
     }
 
     /**
@@ -282,17 +291,20 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
         // TODO add your handling code here:
-        String numero, resultado;
-        int baseInicial, baseFinal;        
-        numero = txtNumeroInicial.getText();
-        baseInicial = java.lang.Integer.parseInt(txtBaseInicial.getText());
-        baseFinal = java.lang.Integer.parseInt(txtBaseFinal.getText());
+        String numero = txtNumeroInicial.getText();
+        String baseInicial = txtBaseInicial.getText();
+        String baseFinal = txtBaseFinal.getText();
+        String resultado = "";                
+        Conversion conversion = null;      
         
-        Conversion conversion = new Conversion(baseInicial, baseFinal, numero);
-        
-        resultado = conversion.convertir();
+        if(!hayErroresConversion(baseInicial, baseFinal, numero)){ 
+            conversion = new Conversion(baseInicial, baseFinal, numero, resultado); 
+            resultado = conversion.convertir();
+            txtNumeroFinal.setText(resultado);
+        }
     }//GEN-LAST:event_btnConvertirActionPerformed
-
+       
+    
     /**
      * @param args the command line arguments
      */
@@ -327,6 +339,24 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
     }
+    
+    /*SECCION DE METODOS PARA MANEJO DE ERRORES*/
+    
+    /*Comprueba si hay errores en los datos de la conversion*/
+    boolean hayErroresConversion(String baseInicial, String baseFinal, String numero){
+        if(baseInicial.isEmpty() || baseFinal.isEmpty() || numero.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Debes ingresar los campos requeridos.", "Campo Vacío", HEIGHT);
+            return true;
+        }
+        
+        if(Integer.parseInt(baseInicial) <= 0 || Integer.parseInt(baseFinal) <= 0){
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Bases no validas.", "Error de Bases", HEIGHT);
+            return true;
+        }
+        
+        return false;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConvertir;

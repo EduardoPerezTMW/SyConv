@@ -10,7 +10,7 @@ package syconv;
  * @author Daniel
  */
 public class Conversion {
-    private String tipo;
+    private int tipo;
     private int baseInicial;
     private int baseFinal;
     private String numeroConvertir;
@@ -19,17 +19,17 @@ public class Conversion {
     public Conversion(){
     }
     
-    public Conversion(int baseIni, int baseFin, String numero){
+    public Conversion(String baseIni, String baseFin, String numero, String resultado){
         /*setBaseInicial(baseIni);
         setBaseFinal(baseFin); 
         setNumeroConvertir(numero);        */
     }
     
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
@@ -66,11 +66,15 @@ public class Conversion {
     }
     
     public String convertir(){
-        String res = null;
-        return res;
+        String resultado = "1234";
+        this.tipo = validarTipoConversion(this.baseInicial, this.baseFinal);
+        switch(this.tipo){
+        }
+        
+        return resultado;
     }
     
-    public int validarTipoConversion(){
+    public int validarTipoConversion(int baseInicial, int baseFinal){
         int tipo = 0;
         return tipo;
     }

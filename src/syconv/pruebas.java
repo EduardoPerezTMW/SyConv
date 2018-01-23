@@ -5,6 +5,7 @@
  */
 package syconv;
 
+import java.util.ArrayList;
 import ventanas.Inicio;
 
 /**
@@ -22,6 +23,17 @@ public class pruebas {
         Operacion operacion;
         Operando operando1;
         Operando operando2;
+        ArrayList<String> datosConversion;
+        
+        datosConversion = new ArrayList<String>();
+        datosConversion.add("-3");
+        datosConversion.add("4");
+        datosConversion.add("5");
+        datosConversion.add("8");
+        
+        System.out.println(java.lang.Integer.parseInt(datosConversion.get(0)) + java.lang.Integer.parseInt(datosConversion.get(1)));
+        
+        
     }
     
 }
