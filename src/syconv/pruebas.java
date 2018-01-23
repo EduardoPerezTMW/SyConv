@@ -11,16 +11,17 @@ import ventanas.Inicio;
  *
  * @author Daniel
  */
-public class SyConv {
+public class pruebas {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Inicio wdInicio = new Inicio();
-        
-        wdInicio.setVisible(true);
+        Conversion conversion = new Conversion();
+        Operacion operacion;
+        Operando operando1;
+        Operando operando2;
     }
     
 }

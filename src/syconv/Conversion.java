@@ -13,18 +13,18 @@ public class Conversion {
     private String tipo;
     private int baseInicial;
     private int baseFinal;
-    private int valorConvertir;
-    private int resultadoConversion;
+    private String numeroConvertir;
+    private String resultadoConversion;
     
     public Conversion(){
     }
     
-    public Conversion(int baseIni, int baseFin, int valor, int resultado){
-        setBaseInicial(baseIni);
+    public Conversion(int baseIni, int baseFin, String numero){
+        /*setBaseInicial(baseIni);
         setBaseFinal(baseFin); 
-        setValorConvertir(valor);        
+        setNumeroConvertir(numero);        */
     }
-
+    
     public String getTipo() {
         return tipo;
     }
@@ -40,38 +40,39 @@ public class Conversion {
     public void setBaseInicial(int baseInicial) {
         this.baseInicial = baseInicial;
     }
-    
-    public int getBaseFinal(){
+
+    public int getBaseFinal() {
         return baseFinal;
     }
-    
-    public void setBaseFinal(int baseFinal){
+
+    public void setBaseFinal(int baseFinal) {
         this.baseFinal = baseFinal;
     }
-    
-    public int getValorConvertir() {
-        return valorConvertir;
+
+    public String getNumeroConvertir() {
+        return numeroConvertir;
     }
 
-    public void setValorConvertir(int valorConvertir) {
-        this.valorConvertir = valorConvertir;
+    public void setNumeroConvertir(String numeroConvertir) {
+        this.numeroConvertir = numeroConvertir;
     }
 
-    public int getResultadoConversion() {
+    public String getResultadoConversion() {
         return resultadoConversion;
     }
 
-    public void setResultadoConversion(int resultadoConversion) {
+    public void setResultadoConversion(String resultadoConversion) {
         this.resultadoConversion = resultadoConversion;
     }
     
-    public String convertir(String resultado){
-        String res = resultado;
+    public String convertir(){
+        String res = null;
         return res;
     }
     
     public int validarTipoConversion(){
-        return 0;
+        int tipo = 0;
+        return tipo;
     }
     
     public String base10_CualquierBase(){

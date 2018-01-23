@@ -282,13 +282,15 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
         // TODO add your handling code here:
-        Conversion conversion = new Conversion();
-        String numero, resultado, baseInicial, baseFinal;
+        String numero, resultado;
+        int baseInicial, baseFinal;        
         numero = txtNumeroInicial.getText();
-        baseInicial = txtBaseInicial.getText();
-        baseFinal = txtBaseFinal.getText();        
-        resultado = conversion.convertir(numero);
-        txtNumeroFinal.setText(resultado);
+        baseInicial = java.lang.Integer.parseInt(txtBaseInicial.getText());
+        baseFinal = java.lang.Integer.parseInt(txtBaseFinal.getText());
+        
+        Conversion conversion = new Conversion(baseInicial, baseFinal, numero);
+        
+        resultado = conversion.convertir();
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
