@@ -5,6 +5,8 @@
  */
 package syconv;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Daniel
@@ -13,18 +15,27 @@ public class Conversion {
     private int tipo;
     private int baseInicial;
     private int baseFinal;
-    private String numeroConvertir;
+    private ArrayList<String> numeroConvertir;    
     private String resultadoConversion;
+    
+    private ArrayList<String> sistemaNumerico;
+    private ArrayList<String> cifrasDelSistema;
     
     public Conversion(){
     }
     
-    public Conversion(String baseIni, String baseFin, String numero, String resultado){
-        /*setBaseInicial(baseIni);
-        setBaseFinal(baseFin); 
-        setNumeroConvertir(numero);        */
+    public Conversion(String baseInicial, String baseFinal, String numeroConvertir, String resultadoConversion){
+        this.baseInicial = Integer.parseInt(baseInicial);
+        this.baseFinal = Integer.parseInt(baseFinal);
+        //while(){
+            this.numeroConvertir.add(numeroConvertir);
+        //}
+        
+               
+        this.resultadoConversion = resultadoConversion;
+        this.tipo = 0;
     }
-    
+   
     public int getTipo() {
         return tipo;
     }
@@ -49,11 +60,11 @@ public class Conversion {
         this.baseFinal = baseFinal;
     }
 
-    public String getNumeroConvertir() {
+    public ArrayList<String> getNumeroConvertir() {
         return numeroConvertir;
     }
 
-    public void setNumeroConvertir(String numeroConvertir) {
+    public void setNumeroConvertir(ArrayList<String> numeroConvertir) {
         this.numeroConvertir = numeroConvertir;
     }
 
@@ -64,22 +75,54 @@ public class Conversion {
     public void setResultadoConversion(String resultadoConversion) {
         this.resultadoConversion = resultadoConversion;
     }
+
+    public ArrayList<String> getSistemaNumerico() {
+        return sistemaNumerico;
+    }
+
+    public void setSistemaNumerico(ArrayList<String> sistemaNumerico) {
+        this.sistemaNumerico = sistemaNumerico;
+    }
+
+    public ArrayList<String> getCifrasDelSistema() {
+        return cifrasDelSistema;
+    }
+
+    public void setCifrasDelSistema(ArrayList<String> cifrasDelSistema) {
+        this.cifrasDelSistema = cifrasDelSistema;
+    }
     
-    public String convertir(){
-        String resultado = "1234";
+    public String convertir(){        
         this.tipo = validarTipoConversion(this.baseInicial, this.baseFinal);
         switch(this.tipo){
+            case 1: this.resultadoConversion = base10_CualquierBase(); break;
+            case 2: this.resultadoConversion = cualquierBase_Base10(); break;
+            case 3: this.resultadoConversion = cualquierBase_CualquierBase(); break;
+            //default: this.resultadoConversion = this.numeroConvertir;
         }
         
-        return resultado;
+        return this.resultadoConversion;
     }
     
     public int validarTipoConversion(int baseInicial, int baseFinal){
-        int tipo = 0;
+        int tipo = 4;
+        if((baseInicial == 10) && (baseFinal != 10)){
+            tipo = 1;
+        }else{
+            if((baseInicial != 10) && (baseFinal == 10)){
+                tipo = 2;
+            }else{
+                if((baseInicial != 10) && (baseFinal != 10)){
+                    tipo = 3;
+                }
+            }
+        }
         return tipo;
     }
     
     public String base10_CualquierBase(){
+        
+        
         return null;
     }
     
@@ -87,8 +130,7 @@ public class Conversion {
         return null;
     }
     
-    public String CualquierBase_CualquierBase(){
+    public String cualquierBase_CualquierBase(){
         return null;
-    }
-    
+    }   
 }

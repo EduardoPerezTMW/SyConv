@@ -30,10 +30,15 @@ public class pruebas {
         datosConversion.add("4");
         datosConversion.add("5");
         datosConversion.add("8");
-        
-        System.out.println(java.lang.Integer.parseInt(datosConversion.get(0)) + java.lang.Integer.parseInt(datosConversion.get(1)));
-        
-        
+        int j = 0;
+        SistemaNumerico sistema = new SistemaNumerico(2);
+        ArrayList digitos = sistema.getDigitos();
+        ArrayList valores = sistema.getValores();
+        int i = 0;
+        while(i < sistema.getBaseSistema()){
+            System.out.println(" " + valores.get(i) + " " + (digitos.get(i)));
+            i++;
+        }
     }
     
 }
