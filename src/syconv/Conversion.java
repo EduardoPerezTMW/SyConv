@@ -13,29 +13,15 @@ import java.util.ArrayList;
  */
 public class Conversion {
     private int tipo;
-    private int baseInicial;
-    private int baseFinal;
-    private ArrayList<String> numeroConvertir;    
-    private String resultadoConversion;
+    private Operando numeroConvertir;
+    private Operando resultadoConversion;
     
-    private ArrayList<String> sistemaNumerico;
-    private ArrayList<String> cifrasDelSistema;
-    
-    public Conversion(){
-    }
-    
-    public Conversion(String baseInicial, String baseFinal, String numeroConvertir, String resultadoConversion){
-        this.baseInicial = Integer.parseInt(baseInicial);
-        this.baseFinal = Integer.parseInt(baseFinal);
-        //while(){
-            this.numeroConvertir.add(numeroConvertir);
-        //}
-        
-               
-        this.resultadoConversion = resultadoConversion;
+    public Conversion(Operando numeroConvertir, Operando resultadoConversion){
         this.tipo = 0;
+        this.numeroConvertir = numeroConvertir;
+        this.resultadoConversion = resultadoConversion;
     }
-   
+
     public int getTipo() {
         return tipo;
     }
@@ -44,64 +30,34 @@ public class Conversion {
         this.tipo = tipo;
     }
 
-    public int getBaseInicial() {
-        return baseInicial;
-    }
-
-    public void setBaseInicial(int baseInicial) {
-        this.baseInicial = baseInicial;
-    }
-
-    public int getBaseFinal() {
-        return baseFinal;
-    }
-
-    public void setBaseFinal(int baseFinal) {
-        this.baseFinal = baseFinal;
-    }
-
-    public ArrayList<String> getNumeroConvertir() {
+    public Operando getNumeroConvertir() {
         return numeroConvertir;
     }
 
-    public void setNumeroConvertir(ArrayList<String> numeroConvertir) {
+    public void setNumeroConvertir(Operando numeroConvertir) {
         this.numeroConvertir = numeroConvertir;
     }
 
-    public String getResultadoConversion() {
+    public Operando getResultadoConversion() {
         return resultadoConversion;
     }
 
-    public void setResultadoConversion(String resultadoConversion) {
+    public void setResultadoConversion(Operando resultadoConversion) {
         this.resultadoConversion = resultadoConversion;
     }
-
-    public ArrayList<String> getSistemaNumerico() {
-        return sistemaNumerico;
-    }
-
-    public void setSistemaNumerico(ArrayList<String> sistemaNumerico) {
-        this.sistemaNumerico = sistemaNumerico;
-    }
-
-    public ArrayList<String> getCifrasDelSistema() {
-        return cifrasDelSistema;
-    }
-
-    public void setCifrasDelSistema(ArrayList<String> cifrasDelSistema) {
-        this.cifrasDelSistema = cifrasDelSistema;
-    }
+    
+    
     
     public String convertir(){        
-        this.tipo = validarTipoConversion(this.baseInicial, this.baseFinal);
+        this.tipo = validarTipoConversion(this.numeroConvertir.getBase(), this.resultadoConversion.getBase());
         switch(this.tipo){
-            case 1: this.resultadoConversion = base10_CualquierBase(); break;
-            case 2: this.resultadoConversion = cualquierBase_Base10(); break;
-            case 3: this.resultadoConversion = cualquierBase_CualquierBase(); break;
-            //default: this.resultadoConversion = this.numeroConvertir;
+            case 1: this.resultadoConversion.setValor(base10_CualquierBase()); break;
+            case 2: this.resultadoConversion.setValor(cualquierBase_Base10()); break;
+            case 3: this.resultadoConversion.setValor(cualquierBase_CualquierBase()); break;
+            case 4: this.resultadoConversion.setValor(this.numeroConvertir.getValor());
         }
         
-        return this.resultadoConversion;
+        return this.resultadoConversion.getValor();
     }
     
     public int validarTipoConversion(int baseInicial, int baseFinal){
@@ -121,8 +77,13 @@ public class Conversion {
     }
     
     public String base10_CualquierBase(){
+        int numero = Integer.parseInt(this.numeroConvertir.getValor());
+        ArrayList resultadoTemp = new ArrayList();
+        ArrayList cifras = new ArrayList();
         
-        
+        /*for(int i = 0; i < numeroConvertir.length(); i++){
+            this.numeroConvertir.add(numeroConvertir.charAt(i));
+        }*/
         return null;
     }
     

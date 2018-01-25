@@ -10,19 +10,21 @@ package syconv;
  * @author Daniel
  */
 public class Operando {
-    private int valor;
+    private String valor;
     private int base;
+    private SistemaNumerico sistema;
     
-    public Operando(int valor, int base){
-        setValor(valor);
-        setBase(base);
+    public Operando(String valor, int base){
+        this.valor = valor;
+        this.base = base;
+        this.sistema = new SistemaNumerico(base);
     }
 
-    public int getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 
@@ -33,7 +35,13 @@ public class Operando {
     public void setBase(int base) {
         this.base = base;
     }
-    
-    
-    
+
+    public SistemaNumerico getSistema() {
+        return sistema;
+    }
+
+    public void setSistema(SistemaNumerico sistema) {
+        this.sistema = sistema;
+    }
+        
 }

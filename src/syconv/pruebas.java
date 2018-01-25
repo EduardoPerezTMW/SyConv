@@ -19,10 +19,11 @@ public class pruebas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Conversion conversion = new Conversion();
+        Operando operando1 = new Operando("54852", 10);
+        Operando operando2  = new Operando("", 2);
+        Conversion conversion = new Conversion(operando1, operando2);
         Operacion operacion;
-        Operando operando1;
-        Operando operando2;
+        
         ArrayList<String> datosConversion;
         
         datosConversion = new ArrayList<String>();
@@ -30,15 +31,27 @@ public class pruebas {
         datosConversion.add("4");
         datosConversion.add("5");
         datosConversion.add("8");
-        int j = 0;
-        SistemaNumerico sistema = new SistemaNumerico(2);
-        ArrayList digitos = sistema.getDigitos();
-        ArrayList valores = sistema.getValores();
-        int i = 0;
-        while(i < sistema.getBaseSistema()){
-            System.out.println(" " + valores.get(i) + " " + (digitos.get(i)));
-            i++;
+        
+        String numero = "";
+               
+        String numeroTemp = operando1.getValor();
+        
+        for(int i = 0; i < numeroTemp.length(); i++){
+            numero = numero + numeroTemp.charAt(i);
         }
+        
+        SistemaNumerico sistemaInicial = new SistemaNumerico(operando1.getBase());
+        SistemaNumerico sistemaFinal = new SistemaNumerico(operando2.getBase());
+        
+        
+        System.out.println(" " + operando1.getBase()
+                           + " " + operando2.getBase() 
+                           + " " + numero 
+                           + " " + sistemaInicial.getDigitos().toString()
+                           + " " + sistemaFinal.getDigitos().toString()
+                           + " " + sistemaInicial.getValores().toString()
+                           + " " + sistemaFinal.getValores().toString()                    
+                           );
     }
     
 }

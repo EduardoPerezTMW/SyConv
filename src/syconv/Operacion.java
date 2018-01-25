@@ -5,54 +5,44 @@
  */
 package syconv;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Daniel
  */
 public class Operacion {
-    private Operando operando1;
-    private Operando operando2;
-    private String signoOperacion;
-    private String resultadoOperacion;
+    private ArrayList<Operando> operandos; //tienen que ser operando1, operando2, resualtado
+    private char signoOperacion;    
+    private Operando resultadoOperacion;
     
-    public Operacion(){
-    }
-    
-    public Operacion(Operando operando1, Operando operando2, String signo){
-        setOperando1(operando1);
-        setOperando2(operando2);
-        setSignoOperacion(signo);
+    public Operacion(Operando operando1, Operando operando2, char signoOperacion, Operando resultadoOperacion){
+        this.operandos = new ArrayList<Operando>();
+        this.signoOperacion = signoOperacion;
+        this.resultadoOperacion = resultadoOperacion;        
     }
 
-    public Operando getOperando1() {
-        return operando1;
+    public ArrayList<Operando> getOperandos() {
+        return operandos;
     }
 
-    public void setOperando1(Operando operando1) {
-        this.operando1 = operando1;
+    public void setOperandos(ArrayList<Operando> operandos) {
+        this.operandos = operandos;
     }
 
-    public Operando getOperando2() {
-        return operando2;
-    }
-
-    public void setOperando2(Operando operando2) {
-        this.operando2 = operando2;
-    }
-
-    public String getSignoOperacion() {
+    public char getSignoOperacion() {
         return signoOperacion;
     }
 
-    public void setSignoOperacion(String signoOperacion) {
+    public void setSignoOperacion(char signoOperacion) {
         this.signoOperacion = signoOperacion;
     }
 
-    public String getResultadoOperacion() {
+    public Operando getResultadoOperacion() {
         return resultadoOperacion;
     }
 
-    public void setResultadoOperacion(String resultadoOperacion) {
+    public void setResultadoOperacion(Operando resultadoOperacion) {
         this.resultadoOperacion = resultadoOperacion;
     }
     

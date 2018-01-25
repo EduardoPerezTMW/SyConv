@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.lang.Integer;
 import syconv.Conversion;
 import syconv.Operacion;
+import syconv.Operando;
 
 /**
  *
@@ -298,7 +299,7 @@ public class Inicio extends javax.swing.JFrame {
         Conversion conversion = null;      
         
         if(!hayErroresConversion(baseInicial, baseFinal, numero)){ 
-            conversion = new Conversion(baseInicial, baseFinal, numero, resultado); 
+            conversion = new Conversion(new Operando(numero, Integer.parseInt(baseInicial)), new Operando("", Integer.parseInt(baseFinal))); 
             resultado = conversion.convertir();
             txtNumeroFinal.setText(resultado);
         }
