@@ -12,22 +12,22 @@ import java.util.ArrayList;
  * @author Daniel
  */
 public class Conversion {
-    private int tipo;
+    private int caso;
     private Operando numeroConvertir;
     private Operando resultadoConversion;
     
     public Conversion(Operando numeroConvertir, Operando resultadoConversion){
-        this.tipo = 0;
+        this.caso = 0;
         this.numeroConvertir = numeroConvertir;
         this.resultadoConversion = resultadoConversion;
     }
-
-    public int getTipo() {
-        return tipo;
+    /*GETTERS Y SETTERS*/
+    public int getCaso() {
+        return caso;
     }
 
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
+    public void setCaso(int caso) {
+        this.caso = caso;
     }
 
     public Operando getNumeroConvertir() {
@@ -45,12 +45,11 @@ public class Conversion {
     public void setResultadoConversion(Operando resultadoConversion) {
         this.resultadoConversion = resultadoConversion;
     }
-    
-    
-    
+        
+    /*FUNCION PRINCIPAL QUE CONTROLA EL FLUJO DE LA CONVERSION*/
     public String convertir(){        
-        this.tipo = validarTipoConversion(this.numeroConvertir.getBase(), this.resultadoConversion.getBase());
-        switch(this.tipo){
+        this.caso = casoConversion(this.numeroConvertir.getBase(), this.resultadoConversion.getBase());
+        switch(this.caso){
             case 1: this.resultadoConversion.setValor(base10_CualquierBase()); break;
             case 2: this.resultadoConversion.setValor(cualquierBase_Base10()); break;
             case 3: this.resultadoConversion.setValor(cualquierBase_CualquierBase()); break;
@@ -59,23 +58,23 @@ public class Conversion {
         
         return this.resultadoConversion.getValor();
     }
-    
-    public int validarTipoConversion(int baseInicial, int baseFinal){
-        int tipo = 4;
+    /*DETECTA EL CASO DE CONVERSION QUE SE PRESENTA*/
+    public int casoConversion(int baseInicial, int baseFinal){
+        int caso = 4; //SI LAS BASES SON IGUALES
         if((baseInicial == 10) && (baseFinal != 10)){
-            tipo = 1;
+            caso = 1; // DE BASE 10 A CUALQUIER OTRA
         }else{
             if((baseInicial != 10) && (baseFinal == 10)){
-                tipo = 2;
+                caso = 2; // DE CUALQUIERA A BASE 10
             }else{
                 if((baseInicial != 10) && (baseFinal != 10)){
-                    tipo = 3;
+                    caso = 3;// DE CUALQUIERA A CUALQUIERA
                 }
             }
         }
-        return tipo;
+        return caso;
     }
-    
+    /*METODO QUE REALIZA LA CONVERSION DE BASE 10 A CUALQUIER BASE SOPORTADA*/
     public String base10_CualquierBase(){
         int numero = Integer.parseInt(this.numeroConvertir.getValor());
         ArrayList resultadoTemp = new ArrayList();
@@ -86,11 +85,11 @@ public class Conversion {
         }*/
         return null;
     }
-    
+    /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A BASE 10 */
     public String cualquierBase_Base10(){
         return null;
     }
-    
+    /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A OTRA BASE SOPORTADA QUE NO SEA 10*/
     public String cualquierBase_CualquierBase(){
         return null;
     }   

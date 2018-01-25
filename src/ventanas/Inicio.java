@@ -298,6 +298,7 @@ public class Inicio extends javax.swing.JFrame {
         String resultado = "";                
         Conversion conversion = null;      
         
+        //Comprobar si hay errores en los datos ingresados
         if(!hayErroresConversion(baseInicial, baseFinal, numero)){ 
             conversion = new Conversion(new Operando(numero, Integer.parseInt(baseInicial)), new Operando("", Integer.parseInt(baseFinal))); 
             resultado = conversion.convertir();
@@ -345,11 +346,12 @@ public class Inicio extends javax.swing.JFrame {
     
     /*Comprueba si hay errores en los datos de la conversion*/
     boolean hayErroresConversion(String baseInicial, String baseFinal, String numero){
+        //Comprueba si no se ingreso un dato
         if(baseInicial.isEmpty() || baseFinal.isEmpty() || numero.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(rootPane, "Debes ingresar los campos requeridos.", "Campo Vacío", HEIGHT);
             return true;
         }
-        
+        //Comprueba si las bases son positivas(ya que por ahorita no soporta bases positivas)
         if(Integer.parseInt(baseInicial) <= 0 || Integer.parseInt(baseFinal) <= 0){
             javax.swing.JOptionPane.showMessageDialog(rootPane, "Bases no validas.", "Error de Bases", HEIGHT);
             return true;

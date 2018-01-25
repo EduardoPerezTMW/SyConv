@@ -22,7 +22,7 @@ public class SistemaNumerico {
         this.valores = new ArrayList();
         generarDigitosValores();
     }
-    
+    /*FUNCION QUE GENERA LOS DIGITOS(REPRESENTACION SIMBOLICA) Y SUS CORRESPONDIENTES VALORES DEL SISTEMA CREADO*/
     public void generarDigitosValores(){
         char caracterTemporal = ' ';
         int j = 0;
@@ -38,7 +38,7 @@ public class SistemaNumerico {
             }            
         }
     }
-
+    /*GETTERS Y SETTERS*/
     public int getBaseSistema() {
         return baseSistema;
     }
