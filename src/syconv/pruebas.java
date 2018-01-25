@@ -19,12 +19,14 @@ public class pruebas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Operando operando1 = new Operando("54852", 10);
-        Operando operando2  = new Operando("", 2);
+        Operando operando1 = new Operando("24568", 10);
+        Operando operando2  = new Operando("", 16);
         Conversion conversion = new Conversion(operando1, operando2);
         Operacion operacion;
         
-        ArrayList<String> datosConversion;
+        conversion.convertir();
+        System.out.println(operando2.getValor());
+        /*ArrayList<String> datosConversion;
         
         datosConversion = new ArrayList<String>();
         datosConversion.add("-3");
@@ -51,7 +53,7 @@ public class pruebas {
                            + " " + sistemaFinal.getDigitos().toString()
                            + " " + sistemaInicial.getValores().toString()
                            + " " + sistemaFinal.getValores().toString()                    
-                           );
+                           );*/
     }
     
 }

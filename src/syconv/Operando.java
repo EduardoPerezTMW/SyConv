@@ -5,6 +5,8 @@
  */
 package syconv;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Daniel
@@ -43,5 +45,24 @@ public class Operando {
     public void setSistema(SistemaNumerico sistema) {
         this.sistema = sistema;
     }
+    
+    /*FUNCION QUE FABRICA EL NUMERO A PARTIR DE LAS CIFRAS MANDADAS COMO PARAMETRO Y EL SISTEMA CORRESPONDIENTE*/
+    public String fabricarNumero(ArrayList cifraTemporal, SistemaNumerico sistema){
+        String numeroFabricado = "";
+        int tam = cifraTemporal.size();
+        ArrayList resultadoTemporal = new ArrayList();                         
+        /*le da la vuelta al array para que los valores de las cifras esten en la posicion correcta*/
+        for(int i = tam-1; i >= 0; i--){
+            resultadoTemporal.add(cifraTemporal.get(i));                         
+        }
+        /*crea la cadena de texto con las cifras del numero aplicando los digitos del sistema correspondiente*/
+        for(int i = 0; i < tam; i++){            
+            numeroFabricado = numeroFabricado + sistema.getDigitos().get((int)resultadoTemporal.get(i));
+        }
+        
+        return numeroFabricado;
+    }
+    
+    
         
 }
