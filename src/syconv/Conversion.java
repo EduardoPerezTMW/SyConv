@@ -76,18 +76,32 @@ public class Conversion {
     }
     /*METODO QUE REALIZA LA CONVERSION DE BASE 10 A CUALQUIER BASE SOPORTADA*/
     public void base10_CualquierBase(){                        
-        ArrayList cifraTemporal = new ArrayList();
-        int dividendo = Integer.parseInt(this.numeroConvertir.getValor());                
-        int divisor = this.resultadoConversion.getBase();
+        String numeroDec = numeroConvertir.obtenerDecimales(this.numeroConvertir.getValor());
+        ArrayList cifraTemporal = new ArrayList();                
+        int dividendo = Integer.parseInt(numeroConvertir.obtenerEnteros(this.numeroConvertir.getValor()));                
+        int divisor = this.resultadoConversion.getBase(); 
         int residuo = dividendo;
-        int cociente = divisor;        
-        /*calcula las cifras del resualtado*/
+        int cociente = divisor;                
+        /*calcula las cifras enteras del resualtado*/
         while(cociente != 0){
             residuo = dividendo % divisor;
             cociente = dividendo / divisor;            
             cifraTemporal.add(residuo);
             dividendo = cociente;            
-        }        
+        }            
+        /*calcula las cifras decimales del resutado*/ 
+        if(numeroConvertir.isRacional()){
+            double multiplicando = Double.parseDouble("0." + numeroDec);
+            int multiplicador = this.resultadoConversion.getBase();
+            double producto = multiplicando;
+            cifraTemporal.add('.');
+            for(int i = 0; i < numeroDec.length(); i++){
+                producto = multiplicando * multiplicador;
+                cifraTemporal.add((int)producto);
+                producto = producto - (double)((int)producto);
+            }
+        }
+        
         /*crea el numero como tal y lo asigna como valor al resualtado final*/
         String resultadoTemporal = resultadoConversion.fabricarNumero(cifraTemporal, resultadoConversion.getSistema());
         resultadoConversion.setValor(resultadoTemporal);         
@@ -97,5 +111,5 @@ public class Conversion {
     }
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A OTRA BASE SOPORTADA QUE NO SEA 10*/
     public void cualquierBase_CualquierBase(){ 
-    }   
+    }       
 }
