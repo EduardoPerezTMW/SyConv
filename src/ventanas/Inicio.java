@@ -304,6 +304,7 @@ public class Inicio extends javax.swing.JFrame {
             resultado = conversion.convertir();
             txtNumeroFinal.setText(resultado);
         }
+
     }//GEN-LAST:event_btnConvertirActionPerformed
        
     

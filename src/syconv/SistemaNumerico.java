@@ -29,7 +29,7 @@ public class SistemaNumerico {
         for(int i = 0; i < this.baseSistema; i++){
             this.valores.add(i);            
             if(i <= 9){                                
-                this.digitos.add(i);
+                this.digitos.add((char)(48+i));
             }else{                 
                 caracterTemporal = (char)(65+j);
                 if(caracterTemporal == 'I' || caracterTemporal == 'O'){ j++; }

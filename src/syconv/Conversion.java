@@ -99,12 +99,13 @@ public class Conversion {
                 producto = multiplicando * multiplicador;
                 cifraTemporal.add((int)producto);
                 producto = producto - (double)((int)producto);
-            }
-        }
-        
+            }            
+            resultadoConversion.setPosicionPunto(cifraTemporal.indexOf('.'));
+        }                
+        resultadoConversion.setRacional(numeroConvertir.isRacional());
         /*crea el numero como tal y lo asigna como valor al resualtado final*/
         String resultadoTemporal = resultadoConversion.fabricarNumero(cifraTemporal, resultadoConversion.getSistema());
-        resultadoConversion.setValor(resultadoTemporal);         
+        resultadoConversion.setValor(resultadoTemporal);   
     }
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A BASE 10 */
     public void cualquierBase_Base10(){        

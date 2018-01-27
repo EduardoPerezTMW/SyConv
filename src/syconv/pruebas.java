@@ -5,6 +5,7 @@
  */
 package syconv;
 
+import static java.lang.System.gc;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import ventanas.Inicio;
@@ -24,30 +25,32 @@ public class pruebas {
         Operando operando2  = new Operando("", 16);
         Conversion conversion = new Conversion(operando1, operando2);
         Operacion operacion;        
+        //operando2.setRacional(true);
         //conversion.convertir();
         //System.out.println(operando2.getValor());        
         String enteros, decimales; 
         enteros = operando1.obtenerEnteros(operando1.getValor());
         decimales = operando1.obtenerDecimales(operando1.getValor());
-        System.out.println(enteros + " . " + decimales); 
+        System.out.println(enteros + "." + decimales); 
         
-        double x = 0.14;
-        int tam = 10;
-        System.out.println((int)x); 
-        System.out.println(x - (double)((int)x)); 
-        ArrayList datosConversion = new ArrayList();
-        for(int i = 0; i < tam; i++){
-            datosConversion.add(null);
-        }
-        char cadena[] = new char[tam];
         
-        for(int i = 10-1; i >= 0; i--){
-            datosConversion.set(i, i+1);
-        }
+        String resultado = conversion.convertir();
+        System.out.println(resultado);
+        //System.out.println((int)x);         
+        /*
+        int tam = 9;        
+        String numeroFabricado[] = new String[tam];
+        ArrayList resultadoTemporal = new ArrayList();        
+        for(int i = 0; i < tam; i++){ resultadoTemporal.add(null); numeroFabricado[i] = "O";}        
+        for(int i = 0; i < tam; i++){ System.out.print(numeroFabricado[i]); }*/
+        //numeroFabricado.replace(numeroFabricado.charAt(4), '.');
+        //numeroFabricado[4] = ".";
         
-        for(int i = 0; i < 10; i++){
-            System.out.println(datosConversion.get(i));
-        }
+        //System.out.println(numeroFabricado[4]);
+        /*System.out.println(numeroFabricado.charAt(0)); 
+        System.out.println(resultadoTemporal.size());*/
+        
+        
         /*ArrayList<String> datosConversion;
         Integer prueba = new Integer(numeroInt);
         datosConversion = new ArrayList<String>();
