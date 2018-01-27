@@ -23,8 +23,7 @@ public class Operando {
         this.base = base;
         this.sistema = new SistemaNumerico(base);
         this.posicionPunto = valor.indexOf(".");
-        this.racional = (this.posicionPunto != -1);
-        
+        this.racional = (this.posicionPunto != -1);        
     }
 
     public String getValor() {
@@ -67,34 +66,28 @@ public class Operando {
         this.posicionPunto = posicionPunto;
     }
     
-    
     /*FUNCION QUE FABRICA EL NUMERO A PARTIR DE LAS CIFRAS MANDADAS COMO PARAMETRO Y EL SISTEMA CORRESPONDIENTE*/
     public String fabricarNumero(ArrayList cifraTemporal, SistemaNumerico sistema){        
-        int tam = cifraTemporal.size();        
+        int i, j, posi, posj, tam = cifraTemporal.size();        
         String numeroFabricado = "";
+        boolean completado = false;
         ArrayList<String> resultadoTemporal = new ArrayList<String>();        
         for(int x = 0; x < tam; x++){ resultadoTemporal.add("O"); }
-        int i = this.posicionPunto, j = this.posicionPunto, posi = 0, posj = j;
         
-        if(this.racional){// tiene parte entera y fraccionaria &&
-            /*le da la vuelta al array partiendo desde la posicion del punto para que los valores de las cifras esten en la posicion correcta*/
-            boolean completado = false;
-            while(!completado){                
-                if(i > 0){ resultadoTemporal.set(posi++, String.valueOf(cifraTemporal.get(--i))); }
-                if(j < tam){ resultadoTemporal.set(posj++, String.valueOf(cifraTemporal.get(j++))); }
-                if(i == 0 && j == tam) completado = true;                
-            }  
-        }else{ // tiene solo parte entera
-            /*le da la vuelta al array para que los valores de las cifras esten en la posicion correcta*/
-            posi = 0; i = tam;
-            while(i > 0){
-                resultadoTemporal.set(posi++, String.valueOf(cifraTemporal.get(--i)));//--i                                         
-            }
-        }
-        //i = 0;//PARA ASEGURARME LOL        
-        /*crea la cadena de texto con del numero con las cifras de la parte decimal(si tiene) aplicando los digitos del sistema correspondiente*/
+        if(this.racional){ //valores si el numero es racional
+            i = this.posicionPunto; j = this.posicionPunto; posi = 0; posj = this.posicionPunto;            
+        }else{ //valores si el numero es entero
+            i = tam; j = tam; posi = 0; posj = tam;
+        }        
+        /*  Esta parte le da vuelta a la parte entera del numero(tenga parte decimal) */
+        while(!completado){                
+            if(i > 0){ resultadoTemporal.set(posi++, String.valueOf(cifraTemporal.get(--i))); }
+            if(j < tam){ resultadoTemporal.set(posj++, String.valueOf(cifraTemporal.get(j++))); }
+            if(i == 0 && j == tam) completado = true;                
+        }  
+        /*crea la cadena correspondiente al numero racional o entero*/
         while(i < tam){
-            if(i == this.posicionPunto){ numeroFabricado = numeroFabricado + '.'; i++; }
+            if(i == this.posicionPunto){ numeroFabricado = numeroFabricado + '.'; i++; }// si tiene parte decimal
             posi = Integer.parseInt(resultadoTemporal.get(i));
             numeroFabricado = numeroFabricado + sistema.getDigitos().get(posi);
             i++;
@@ -104,8 +97,7 @@ public class Operando {
     }
     
     /* FUNCION QUE DEVUELVE LA PARTE ENTERA DEL NUMERO PASADO COMO PARAMETRO
-       SI EL NUMERO PASADO COMO PARAMETRO ES ENTERO ENTONCES SO DEBUELVE;
-    */
+       SI EL NUMERO PASADO COMO PARAMETRO ES ENTERO ENTONCES LO RETORNA */
     public String obtenerEnteros(String numero){
         int punto = numero.indexOf(".");
         if(punto == -1){ return numero; }        

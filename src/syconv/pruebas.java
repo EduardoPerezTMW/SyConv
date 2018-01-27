@@ -21,9 +21,9 @@ public class pruebas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //Operando operando1 = new Operando("24568.2534", 10);
-        Operando operando1 = new Operando("24568", 10);
-        Operando operando2  = new Operando("", 16);
+        Operando operando1 = new Operando("24568.2534", 10);
+        //Operando operando1 = new Operando("24568", 10);
+        Operando operando2  = new Operando("", 2);
         Conversion conversion = new Conversion(operando1, operando2);
         Operacion operacion;        
         //operando2.setRacional(true);

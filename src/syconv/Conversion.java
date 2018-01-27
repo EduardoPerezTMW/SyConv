@@ -53,7 +53,7 @@ public class Conversion {
             case 1: base10_CualquierBase(); break;
             case 2: cualquierBase_Base10(); break;
             case 3: cualquierBase_CualquierBase(); break;
-            case 4: this.numeroConvertir.getValor();
+            case 4: return this.numeroConvertir.getValor();  
         }
         
         return this.resultadoConversion.getValor();
@@ -95,10 +95,11 @@ public class Conversion {
             int multiplicador = this.resultadoConversion.getBase();
             double producto = multiplicando;
             cifraTemporal.add('.');
+            int debug = numeroDec.length();
             for(int i = 0; i < numeroDec.length(); i++){
                 producto = multiplicando * multiplicador;
                 cifraTemporal.add((int)producto);
-                producto = producto - (double)((int)producto);
+                multiplicando = producto - (double)((int)producto);
             }            
             resultadoConversion.setPosicionPunto(cifraTemporal.indexOf('.'));
         }                
