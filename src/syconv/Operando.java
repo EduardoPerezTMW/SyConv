@@ -98,16 +98,16 @@ public class Operando {
     
     /* FUNCION QUE DEVUELVE LA PARTE ENTERA DEL NUMERO PASADO COMO PARAMETRO
        SI EL NUMERO PASADO COMO PARAMETRO ES ENTERO ENTONCES LO RETORNA */
-    public String obtenerEnteros(String numero){
-        int punto = numero.indexOf(".");
-        if(punto == -1){ return numero; }        
-        return numero.substring(0, punto);
+    public String obtenerEnteros(){
+        int punto = this.valor.indexOf(".");
+        if(punto == -1){ return this.valor; }        
+        return this.valor.substring(0, punto);
     }
     
     /*FUNCION QUE DEVUELVE LA PARTE DECIMAL DEL NUMERO PASADO COMO PARAMETRO*/
-    public String obtenerDecimales(String numero){        
-        int punto = numero.indexOf(".");
+    public String obtenerDecimales(){        
+        int punto = this.valor.indexOf(".");
         if(punto == -1){ return "00"; }
-        return numero.substring(punto+1);
+        return this.valor.substring(punto+1);
     }    
 }
