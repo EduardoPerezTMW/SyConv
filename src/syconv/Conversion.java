@@ -89,64 +89,59 @@ public class Conversion {
             cifraTemporal.add(residuo);
             dividendo = cociente;            
         }            
-        /*calcula las cifras decimales del resutado*/ 
+        /*calcula las cifras decimales del resutado y termina de completar el numero*/ 
         if(this.numeroConvertir.isRacional()){
             double multiplicando = Double.parseDouble("0." + numeroDec);
             int multiplicador = this.resultadoConversion.getBase();
             double producto = multiplicando;
-            cifraTemporal.add('.');
-            int debug = numeroDec.length();
+            cifraTemporal.add('.');            
             for(int i = 0; i < numeroDec.length(); i++){
                 producto = multiplicando * multiplicador;
                 cifraTemporal.add((int)producto);
                 multiplicando = producto - (double)((int)producto);
             }            
             this.resultadoConversion.setPosicionPunto(cifraTemporal.indexOf('.'));
+            this.resultadoConversion.setRacional(this.numeroConvertir.isRacional());
         }                
-        this.resultadoConversion.setRacional(this.numeroConvertir.isRacional());
+        
         /*crea el numero como tal y lo asigna como valor al resualtado final*/
         String resultadoTemporal = this.resultadoConversion.fabricarNumero(cifraTemporal, this.resultadoConversion.getSistema());
         this.resultadoConversion.setValor(resultadoTemporal);   
     }
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A BASE 10 */
     public void cualquierBase_Base10(){                
+        int tam = this.numeroConvertir.getValor().length() - 1, i, j, posi, posj;
         boolean completado = false;
-        int tam = this.numeroConvertir.getValor().length();        
-        String resultadoTemporal = this.numeroConvertir.getValor();
         double sumatoria = 0;
-        int pos = -1;
-        
-        if(this.numeroConvertir.isRacional()){            
-            int i = this.numeroConvertir.getPosicionPunto(), j = this.numeroConvertir.getPosicionPunto(), 
-                    posi = i-1, posj = j;//posi = 4, posj = 5
-            while(!completado){                 
-                if(i > 0){
-                    sumatoria = sumatoria 
-                    + (this.numeroConvertir.getSistema().getDigitos().indexOf(resultadoTemporal.charAt(--i)) 
-                    * (int)(Math.pow(this.numeroConvertir.getBase(), (posi - i))));
-                }
-                if(j < (tam-1)){ //9
-                    sumatoria = sumatoria 
-                    + (this.numeroConvertir.getSistema().getDigitos().indexOf(resultadoTemporal.charAt(++j)) 
-                    * (Math.pow(this.numeroConvertir.getBase(), (posi - (posj++)))));
-                }
-                if(i == 0 && j == (tam-1)) completado = true;
-            }            
+        String resultadoTemporal = this.numeroConvertir.getValor();
+        /*inicializa las variables de acuardo al tipo de numero ingresado*/
+        if(this.numeroConvertir.isRacional()){ 
+            i = this.numeroConvertir.getPosicionPunto(); j = this.numeroConvertir.getPosicionPunto();//variables controlan la posicion de partida para realizar las operaciones con cada digito
+            posi = i-1; posj = j; //estas variables controlan el exponente al cual elevar la base del numero a convertir
+        }else{ 
+            i = tam + 1; j = tam; posi = tam; posj = j; 
+        }
+        /*calcula el resultado usando la base correspondiente y las cifras del numero a covertir*/
+        while(!completado){                 
+            if(i > 0){ sumatoria = sumatoria + (this.numeroConvertir.getSistema().getDigitos().indexOf(resultadoTemporal.charAt(--i)) * (int)(Math.pow(this.numeroConvertir.getBase(), (posi - i)))); }
+            if(j < tam){ sumatoria = sumatoria + (this.numeroConvertir.getSistema().getDigitos().indexOf(resultadoTemporal.charAt(++j)) * (Math.pow(this.numeroConvertir.getBase(), (posi - (posj++))))); }
+            if(i == 0 && j == tam) completado = true;
+        }  
+        /*termina de formar el numero si es racional y si no solo convierte el double a string sin decimales*/    
+        if(this.numeroConvertir.isRacional()){
+            this.resultadoConversion.setRacional(this.numeroConvertir.isRacional());
+            this.resultadoConversion.setPosicionPunto(this.numeroConvertir.getPosicionPunto());   
+            int numeroDec = this.numeroConvertir.obtenerDecimales().length() + 1; //resultadoTemporal = String.valueOf(sumatoria);
+            resultadoTemporal = String.valueOf(sumatoria).substring(0, this.numeroConvertir.getPosicionPunto() + numeroDec);
         }else{
-            pos = this.numeroConvertir.getValor().length() - 1;
-            for(int i = 0; i < tam; i++){
-                sumatoria = sumatoria + (this.numeroConvertir.getSistema().getDigitos().indexOf(resultadoTemporal.charAt(i)) * (int)(Math.pow(this.numeroConvertir.getBase(), (pos - i))));
-            }            
-        }   
+            resultadoTemporal = String.valueOf((int)sumatoria);
+        }        
         
-        String numeroTemporal = String.valueOf(sumatoria);
-        int numeroDec = this.numeroConvertir.obtenerDecimales().length() + 1;
-        numeroTemporal = numeroTemporal.substring(0, this.numeroConvertir.getPosicionPunto() + numeroDec);
-        this.resultadoConversion.setRacional(this.numeroConvertir.isRacional());
-        this.resultadoConversion.setPosicionPunto(this.numeroConvertir.getPosicionPunto());        
-        this.resultadoConversion.setValor(numeroTemporal);        
+        this.resultadoConversion.setValor(resultadoTemporal);        
     }    
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A OTRA BASE SOPORTADA QUE NO SEA 10*/
     public void cualquierBase_CualquierBase(){ 
-    }       
+        this.cualquierBase_Base10();
+        this.base10_CualquierBase();    
+    }
 }
