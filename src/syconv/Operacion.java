@@ -12,12 +12,14 @@ import java.util.ArrayList;
  * @author Daniel
  */
 public class Operacion {
-    private ArrayList<Operando> operandos; //tienen que ser operando1, operando2, resualtado
+    private ArrayList<Operando> operandos; //tienen que ser operando1, operando2, resualtado(este ultimo por ahorita no)
     private char signoOperacion;    
     private Operando resultadoOperacion;
     
-    public Operacion(Operando operando1, Operando operando2, char signoOperacion, Operando resultadoOperacion){
-        this.operandos = new ArrayList<Operando>();
+    public Operacion(ArrayList<Operando> operandos, char signoOperacion, Operando resultadoOperacion){        
+        for(Operando o : operandos){
+            this.agregarOperandos(o);
+        }        
         this.signoOperacion = signoOperacion;
         this.resultadoOperacion = resultadoOperacion;        
     }
@@ -46,6 +48,33 @@ public class Operacion {
         this.resultadoOperacion = resultadoOperacion;
     }
     
+    /*METODO QUE AGREGA LOS VALORES QUE SE VAN A OPERAR*/
+    public void agregarOperandos(Operando operando){                
+        this.operandos.add(operando);
+    }
     
-    
+    /*FUNCION QUE VERIFICA EL TIPO DE OPERACION Y LA REALIZA*/
+    public String Operar(){
+        
+        switch(this.signoOperacion){
+            case '+': this.realizarSuma(); break;
+            case '-': this.realizarResta(); break;
+            case '*': this.realizarMultiplicacion(); break;
+            case '/': this.realizarDivision(); break;
+        }
+        
+        return this.resultadoOperacion.getValor();
+    }
+    /*OPERACION QUE REALIZA LA SUMA DE LOS NUMEROS*/
+    public void realizarSuma(){
+    }
+    /*OPERACION QUE REALIZA LA RESTA DE LOS NUMEROS*/
+    public void realizarResta(){
+    }
+    /*OPERACION QUE REALIZA LA MULTIPLICACION DE LOS NUMEROS*/
+    public void realizarMultiplicacion(){
+    }
+    /*OPERACION QUE REALIZA LA DIVISION DE LOS NUMEROS*/
+    public void realizarDivision(){
+    }
 }
