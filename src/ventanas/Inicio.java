@@ -338,7 +338,7 @@ public class Inicio extends javax.swing.JFrame {
             ArrayList<Operando> operandos = new ArrayList<Operando>();
             operandos.add(new Operando("a", Integer.parseInt(baseA)));
             operandos.add(new Operando("b", Integer.parseInt(baseB)));
-            operacion = new Operacion(operandos, signo.charAt(0), new Operando("Funciona LOL", Integer.parseInt(baseOperacion)));            
+            operacion = new Operacion(operandos, signo.charAt(0), Integer.parseInt(baseOperacion));            
             resultado = operacion.Operar();
             txtResultado.setText(resultado); 
         }        

@@ -58,6 +58,19 @@ public class Conversion {
         
         return this.resultadoConversion.getValor();
     }
+    
+    public Operando convertir2(){        
+        this.caso = casoConversion(this.numeroConvertir.getBase(), this.resultadoConversion.getBase());
+        switch(this.caso){
+            case 1: base10_CualquierBase(); break;
+            case 2: cualquierBase_Base10(); break;
+            case 3: cualquierBase_CualquierBase(); break;
+            case 4: return this.numeroConvertir;  
+        }
+        
+        return this.resultadoConversion;
+    }
+    
     /*DETECTA EL CASO DE CONVERSION QUE SE PRESENTA*/
     public int casoConversion(int baseInicial, int baseFinal){
         int caso = 4; //si las bases son iguales
