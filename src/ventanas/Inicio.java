@@ -127,25 +127,24 @@ public class Inicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtBaseInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNumeroInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtBaseFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNumeroFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel2))
-                    .addComponent(txtBaseInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel3))
-                    .addComponent(txtBaseFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -311,15 +310,15 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         String numero = txtNumeroInicial.getText();
         String baseInicial = txtBaseInicial.getText();
-        String baseFinal = txtBaseFinal.getText();
-        String resultado = "";                
+        String baseFinal = txtBaseFinal.getText();                       
         Conversion conversion = null;              
         //Comprobar si hay errores en los datos ingresados
         if(!hayErroresConversion(baseInicial, baseFinal, numero)){ 
             conversion = new Conversion(new Operando(numero, Integer.parseInt(baseInicial)), new Operando("", Integer.parseInt(baseFinal))); 
-            resultado = conversion.convertir();
-            txtNumeroFinal.setText(resultado);
+            conversion.convertir();
+            txtNumeroFinal.setText(conversion.getResultadoConversion().getValor());
         }
+        conversion = null;
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     private void btnOperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperarActionPerformed
@@ -336,11 +335,12 @@ public class Inicio extends javax.swing.JFrame {
         //comprobar si hay errores en los datos ingresados
         if(!hayErroresOperacion(a, b, baseA, baseB, baseOperacion)){              
             ArrayList<Operando> operandos = new ArrayList<Operando>();
-            operandos.add(new Operando("a", Integer.parseInt(baseA)));
-            operandos.add(new Operando("b", Integer.parseInt(baseB)));
+            operandos.add(new Operando(a, Integer.parseInt(baseA)));
+            operandos.add(new Operando(b, Integer.parseInt(baseB)));
             operacion = new Operacion(operandos, signo.charAt(0), Integer.parseInt(baseOperacion));            
-            resultado = operacion.Operar();
-            txtResultado.setText(resultado); 
+            operacion.Operar();
+            txtResultado.setText(operacion.getResultadoOperacion().getValor()); 
+            txtBaseResultado.setText(String.valueOf(operacion.getResultadoOperacion().getBase()));
         }        
     }//GEN-LAST:event_btnOperarActionPerformed
        

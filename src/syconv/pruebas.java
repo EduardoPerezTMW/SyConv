@@ -30,9 +30,8 @@ public class pruebas {
         Operacion operacion = new Operacion(operandos, '+', 10); 
         //String resultado = conversion.convertir();
         //System.out.println(resultado);       
-        
-        System.out.println(operacion.Operar());
-        
+        operacion.Operar();
+        System.out.println(operacion.getResultadoOperacion().getValor());       
     
     }
 }

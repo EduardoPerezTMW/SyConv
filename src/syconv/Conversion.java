@@ -47,45 +47,39 @@ public class Conversion {
     }
         
     /*FUNCION PRINCIPAL QUE CONTROLA EL FLUJO DE LA CONVERSION*/
-    public String convertir(){        
+    public void convertir(){        
         this.caso = casoConversion(this.numeroConvertir.getBase(), this.resultadoConversion.getBase());
         switch(this.caso){
             case 1: base10_CualquierBase(); break;
             case 2: cualquierBase_Base10(); break;
             case 3: cualquierBase_CualquierBase(); break;
-            case 4: return this.numeroConvertir.getValor();  
-        }
-        
-        return this.resultadoConversion.getValor();
-    }
-    
-    public Operando convertir2(){        
-        this.caso = casoConversion(this.numeroConvertir.getBase(), this.resultadoConversion.getBase());
-        switch(this.caso){
-            case 1: base10_CualquierBase(); break;
-            case 2: cualquierBase_Base10(); break;
-            case 3: cualquierBase_CualquierBase(); break;
-            case 4: return this.numeroConvertir;  
-        }
-        
-        return this.resultadoConversion;
+            case 4: 
+                this.resultadoConversion.setValor(this.numeroConvertir.getValor());
+                this.resultadoConversion.setSistema(this.numeroConvertir.getSistema());
+                this.resultadoConversion.setBase(this.numeroConvertir.getBase()); 
+                this.resultadoConversion.setPosicionPunto(this.numeroConvertir.getPosicionPunto());
+                this.resultadoConversion.setRacional(this.numeroConvertir.isRacional());
+        }   
     }
     
     /*DETECTA EL CASO DE CONVERSION QUE SE PRESENTA*/
-    public int casoConversion(int baseInicial, int baseFinal){
-        int caso = 4; //si las bases son iguales
-        if((baseInicial == 10) && (baseFinal != 10)){
-            caso = 1; // de base 10 a cualquier otra
+    public int casoConversion(int baseInicial, int baseFinal){        
+        if(baseInicial == baseFinal){
+            return 4;
         }else{
-            if((baseInicial != 10) && (baseFinal == 10)){
-                caso = 2; // de cualquiera a base 10
+            if((baseInicial == 10) && (baseFinal != 10)){
+                return 1; // de base 10 a cualquier otra
             }else{
-                if((baseInicial != 10) && (baseFinal != 10)){
-                    caso = 3;// de cualquiera a cualquiera
+                if((baseInicial != 10) && (baseFinal == 10)){
+                    return 2; // de cualquiera a base 10
+                }else{
+                    if((baseInicial != 10) && (baseFinal != 10)){
+                        return 3;// de cualquiera a cualquiera
+                    }
                 }
             }
         }
-        return caso;
+        return -1;
     }
     /*METODO QUE REALIZA LA CONVERSION DE BASE 10 A CUALQUIER BASE SOPORTADA*/
     public void base10_CualquierBase(){                        

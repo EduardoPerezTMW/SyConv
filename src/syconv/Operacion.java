@@ -56,15 +56,13 @@ public class Operacion {
     }
     
     /*FUNCION QUE VERIFICA EL TIPO DE OPERACION Y LA REALIZA*/
-    public String Operar(){            
+    public void Operar(){            
         switch(this.signoOperacion){
             case '+': this.realizarSuma(); break;
             case '-': this.realizarResta(); break;
             case '*': this.realizarMultiplicacion(); break;
             case '/': this.realizarDivision(); break;
-        }
-        
-        return this.resultadoOperacion.getValor();
+        }        
     }
     /*OPERACION QUE REALIZA LA SUMA DE LOS NUMEROS*/
     public void realizarSuma(){   
@@ -89,6 +87,7 @@ public class Operacion {
         }
         
         this.resultadoOperacion = convertirOperando(opaux, this.baseOperacion);
+        
     }
     /*OPERACION QUE REALIZA LA RESTA DE LOS NUMEROS*/
     public void realizarResta(){
@@ -102,7 +101,7 @@ public class Operacion {
     
     public Operando convertirOperando(Operando original, int base){
         Conversion conversion = new Conversion(original, new Operando("", base));                
-        
-        return conversion.convertir2();        
+        conversion.convertir();
+        return conversion.getResultadoConversion();        
     }
 }
