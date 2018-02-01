@@ -16,6 +16,10 @@ public class Conversion {
     private Operando numeroConvertir;
     private Operando resultadoConversion;
     
+    /*  Este constructor puede cambiar debido que que existe la posibilidad de que el parametro
+        Operando resultadoConversion no vaya y por lo tanto la creacion del objeto correspondiente se va 
+        a hacer al obtener todos los datos necesarios, ademas en ves de ese argumento ira: int baseFinal
+    */
     public Conversion(Operando numeroConvertir, Operando resultadoConversion){
         this.caso = 0;
         this.numeroConvertir = numeroConvertir;
@@ -147,12 +151,16 @@ public class Conversion {
         this.resultadoConversion.setValor(resultadoTemporal);        
     }    
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A OTRA BASE SOPORTADA QUE NO SEA 10*/
+    /*  Este metodo puede cambiar ya que la basetemp puede hacerse innecesaria, al cambiar los atributos de la
+        clase, porque existe la posibilidad de que al crear el objeto conversion no sea tan necesario crear
+        de un solo el objeto resultadoConversion, este puede crearse de un solo al obtener los resultados.
+    */    
     public void cualquierBase_CualquierBase(){ 
-        int baseTemp = this.resultadoConversion.getBase();
-        this.cualquierBase_Base10();
-        this.resultadoConversion.setBase(10);
-        this.numeroConvertir = this.resultadoConversion;
-        this.resultadoConversion = new Operando("", baseTemp);
-        this.base10_CualquierBase();    
+        int baseTemp = this.resultadoConversion.getBase();//para recordar la base del resultado
+        this.cualquierBase_Base10(); 
+        this.resultadoConversion.setBase(10); // para actualizar la base y obtener un resultado intermedio
+        this.numeroConvertir = this.resultadoConversion; // el resultado de la conversion anterior se vuelve el nuevo numero a convertir
+        this.resultadoConversion = new Operando("", baseTemp);// se actualiza el objeto resultado final para obtener el definitivo
+        this.base10_CualquierBase(); //se obtiene el resultado de la conversion definitivo
     }
 }

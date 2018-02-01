@@ -340,8 +340,8 @@ public class Inicio extends javax.swing.JFrame {
             operandos.add(new Operando(a, Integer.parseInt(baseA)));
             operandos.add(new Operando(b, Integer.parseInt(baseB)));
             operacion = new Operacion(operandos, signo.charAt(0), Integer.parseInt(baseOperacion));            
-            if(operacion.getOperandos().get(0).baseCorrespondiente()){
-                if(operacion.getOperandos().get(1).baseCorrespondiente()){
+            if(operacion.getOperandos().get(0).baseCorrespondiente()){//comprueba el primer operando
+                if(operacion.getOperandos().get(1).baseCorrespondiente()){//comprueba el segundo operando
                     operacion.Operar();
                     txtResultado.setText(operacion.getResultadoOperacion().getValor()); 
                     txtBaseResultado.setText(String.valueOf(operacion.getResultadoOperacion().getBase()));

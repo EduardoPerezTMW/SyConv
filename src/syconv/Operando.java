@@ -113,24 +113,11 @@ public class Operando {
     
     /*FUNCION QUE COMPRUEBA QUE LA BASE CORRESPONDE AL NUMERO*/
     public boolean baseCorrespondiente(){        
-        /*int i, j, tam = this.valor.length()-1;
-        boolean completado = false, corresponde = true;
-        if(this.racional){ //valores si el numero es racional
-            i = this.posicionPunto; j = this.posicionPunto;            
-        }else{ //valores si el numero es entero
-            i = tam; j = tam; 
-        }        
-        
-        while(!completado){                
-            if(i > 0){ if(this.sistema.getDigitos().indexOf(this.valor.charAt(--i)) == -1){ corresponde = false; break; } }
-            if(j < tam){ if(this.sistema.getDigitos().indexOf(this.valor.charAt(++j)) == -1){ corresponde = false; break; } }
-            if(i == 0 && j == tam) completado = true;  
-        }**/boolean corresponde = true;
+        boolean corresponde = true;
         for(int i = 0; i < this.valor.length(); i++){            
             if(i == this.posicionPunto) i++;
             if(this.sistema.getDigitos().indexOf(this.valor.charAt(i)) == -1){ corresponde = false; break; }            
-        }
-        boolean x = corresponde;
+        }//si hay un solo digito que no se encuentre en los digitos del sistema entonces el numero no corresponde
         return corresponde;
     }
 }
