@@ -68,11 +68,11 @@ public class Operacion {
     public void realizarSuma(){   
         double op1, op2, r;
         Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
-        this.convertirOperando(a, 10);         
-        this.convertirOperando(b, 10);
+        //this.convertirOperando(a, 10).getValor();         
+        //this.convertirOperando(b, 10).getValor();
         
-        op1 = Double.parseDouble(a.getValor());
-        op2 = Double.parseDouble(b.getValor());
+        op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
+        op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
         r = op1 + op2;        
         
         if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
@@ -89,8 +89,8 @@ public class Operacion {
         this.convertirOperando(a, 10);         
         this.convertirOperando(b, 10);
         
-        op1 = Double.parseDouble(a.getValor());
-        op2 = Double.parseDouble(b.getValor());
+        op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
+        op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
         r = op1 - op2;        
         
         if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
@@ -107,8 +107,8 @@ public class Operacion {
         this.convertirOperando(a, 10);         
         this.convertirOperando(b, 10);
         
-        op1 = Double.parseDouble(a.getValor());
-        op2 = Double.parseDouble(b.getValor());
+        op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
+        op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
         r = op1 * op2;        
         
         if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
@@ -125,8 +125,8 @@ public class Operacion {
         this.convertirOperando(a, 10);         
         this.convertirOperando(b, 10);
         
-        op1 = Double.parseDouble(a.getValor());
-        op2 = Double.parseDouble(b.getValor());
+        op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
+        op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
         r = op1 / op2;        
         
         if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
