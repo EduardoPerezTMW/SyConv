@@ -21,17 +21,17 @@ public class pruebas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Operando operando1 = new Operando("1", 10);
-        Operando operando2 = new Operando("1", 10);
+        Operando operando1 = new Operando("8", 5);
+        Operando operando2 = new Operando("2", 10);
         Operando operando3  = new Operando("", 10);
-        Conversion conversion = new Conversion(operando2, operando3);
+        Conversion conversion = new Conversion(new Operando("B1", 16), new Operando("", 2));
         ArrayList<Operando> operandos = new ArrayList<Operando>();
         operandos.add(operando1);operandos.add(operando2);
         Operacion operacion = new Operacion(operandos, '+', 10); 
-        //String resultado = conversion.convertir();
-        //System.out.println(resultado);       
-        operacion.Operar();
-        System.out.println(operacion.getResultadoOperacion().getValor());       
+        conversion.convertir();
+        System.out.println(conversion.getResultadoConversion().getValor());       
+        //operacion.Operar();
+        //System.out.println(operacion.getResultadoOperacion().getValor());       
     
     }
 }

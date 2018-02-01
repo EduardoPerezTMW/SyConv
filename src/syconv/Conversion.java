@@ -29,7 +29,7 @@ public class Conversion {
     public void setCaso(int caso) {
         this.caso = caso;
     }
-
+    
     public Operando getNumeroConvertir() {
         return numeroConvertir;
     }
@@ -148,7 +148,11 @@ public class Conversion {
     }    
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A OTRA BASE SOPORTADA QUE NO SEA 10*/
     public void cualquierBase_CualquierBase(){ 
+        int baseTemp = this.resultadoConversion.getBase();
         this.cualquierBase_Base10();
+        this.resultadoConversion.setBase(10);
+        this.numeroConvertir = this.resultadoConversion;
+        this.resultadoConversion = new Operando("", baseTemp);
         this.base10_CualquierBase();    
     }
 }

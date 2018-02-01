@@ -313,10 +313,12 @@ public class Inicio extends javax.swing.JFrame {
         String baseFinal = txtBaseFinal.getText();                       
         Conversion conversion = null;              
         //Comprobar si hay errores en los datos ingresados
-        if(!hayErroresConversion(baseInicial, baseFinal, numero)){ 
+        if(!hayErroresConversion(baseInicial, baseFinal, numero)){             
             conversion = new Conversion(new Operando(numero, Integer.parseInt(baseInicial)), new Operando("", Integer.parseInt(baseFinal))); 
-            conversion.convertir();
-            txtNumeroFinal.setText(conversion.getResultadoConversion().getValor());
+            if(conversion.getNumeroConvertir().baseCorrespondiente()){
+                conversion.convertir();
+                txtNumeroFinal.setText(conversion.getResultadoConversion().getValor());
+            }else{ txtNumeroInicial.setText("El numero no coincide con la base"); }            
         }
         conversion = null;
     }//GEN-LAST:event_btnConvertirActionPerformed
@@ -338,13 +340,16 @@ public class Inicio extends javax.swing.JFrame {
             operandos.add(new Operando(a, Integer.parseInt(baseA)));
             operandos.add(new Operando(b, Integer.parseInt(baseB)));
             operacion = new Operacion(operandos, signo.charAt(0), Integer.parseInt(baseOperacion));            
-            operacion.Operar();
-            txtResultado.setText(operacion.getResultadoOperacion().getValor()); 
-            txtBaseResultado.setText(String.valueOf(operacion.getResultadoOperacion().getBase()));
+            if(operacion.getOperandos().get(0).baseCorrespondiente()){
+                if(operacion.getOperandos().get(1).baseCorrespondiente()){
+                    operacion.Operar();
+                    txtResultado.setText(operacion.getResultadoOperacion().getValor()); 
+                    txtBaseResultado.setText(String.valueOf(operacion.getResultadoOperacion().getBase()));
+                }else{ txtOperando2.setText("El numero no coincide con la base"); }                                
+            }else{ txtOperando1.setText("El numero no coincide con la base"); }            
         }        
     }//GEN-LAST:event_btnOperarActionPerformed
        
-    
     /**
      * @param args the command line arguments
      */

@@ -68,13 +68,8 @@ public class Operacion {
     public void realizarSuma(){   
         double op1, op2, r;
         Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
-        
-        if(this.operandos.get(0).getBase() != 10){
-            a = this.convertirOperando(this.operandos.get(0), 10);
-        }                
-        if(this.operandos.get(1).getBase() != 10){
-            b = this.convertirOperando(this.operandos.get(1), 10);
-        }                
+        this.convertirOperando(a, 10);         
+        this.convertirOperando(b, 10);
         
         op1 = Double.parseDouble(a.getValor());
         op2 = Double.parseDouble(b.getValor());
@@ -84,24 +79,71 @@ public class Operacion {
             opaux = new Operando(String.valueOf(r), 10);            
         }else{
             opaux = new Operando(String.valueOf((int)r), 10);                    
-        }
-        
-        this.resultadoOperacion = convertirOperando(opaux, this.baseOperacion);
-        
+        }        
+        this.resultadoOperacion = convertirOperando(opaux, this.baseOperacion);        
     }
     /*OPERACION QUE REALIZA LA RESTA DE LOS NUMEROS*/
     public void realizarResta(){
+        double op1, op2, r;
+        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
+        this.convertirOperando(a, 10);         
+        this.convertirOperando(b, 10);
+        
+        op1 = Double.parseDouble(a.getValor());
+        op2 = Double.parseDouble(b.getValor());
+        r = op1 - op2;        
+        
+        if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
+            opaux = new Operando(String.valueOf(r), 10);            
+        }else{
+            opaux = new Operando(String.valueOf((int)r), 10);                    
+        }        
+        this.resultadoOperacion = convertirOperando(opaux, this.baseOperacion); 
     }
     /*OPERACION QUE REALIZA LA MULTIPLICACION DE LOS NUMEROS*/
     public void realizarMultiplicacion(){
+        double op1, op2, r;
+        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
+        this.convertirOperando(a, 10);         
+        this.convertirOperando(b, 10);
+        
+        op1 = Double.parseDouble(a.getValor());
+        op2 = Double.parseDouble(b.getValor());
+        r = op1 * op2;        
+        
+        if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
+            opaux = new Operando(String.valueOf(r), 10);            
+        }else{
+            opaux = new Operando(String.valueOf((int)r), 10);                    
+        }        
+        this.resultadoOperacion = convertirOperando(opaux, this.baseOperacion); 
     }
     /*OPERACION QUE REALIZA LA DIVISION DE LOS NUMEROS*/
     public void realizarDivision(){
+        double op1, op2, r;
+        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
+        this.convertirOperando(a, 10);         
+        this.convertirOperando(b, 10);
+        
+        op1 = Double.parseDouble(a.getValor());
+        op2 = Double.parseDouble(b.getValor());
+        r = op1 / op2;        
+        
+        if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
+            opaux = new Operando(String.valueOf(r), 10);            
+        }else{
+            opaux = new Operando(String.valueOf((int)r), 10);                    
+        }        
+        this.resultadoOperacion = convertirOperando(opaux, this.baseOperacion); 
     }
-    
-    public Operando convertirOperando(Operando original, int base){
-        Conversion conversion = new Conversion(original, new Operando("", base));                
-        conversion.convertir();
-        return conversion.getResultadoConversion();        
+    /*FUNCION QUE CONVIERTE EL NUMERO A BASE 10 PARA PODER REALIZAR LA OPERACIO RESPECTIVA */
+    public Operando convertirOperando(Operando original, int base){        
+        if(original.getBase() != base){
+            Conversion conversion = new Conversion(original, new Operando("", base));                
+            conversion.convertir();
+            return conversion.getResultadoConversion();
+        }
+        
+        return original;        
     }
 }
