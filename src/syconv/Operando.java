@@ -17,13 +17,19 @@ public class Operando {
     private SistemaNumerico sistema;
     private boolean racional;
     private int posicionPunto;
+    private boolean negativo;
     
-    public Operando(String valor, int base){
-        this.valor = valor;
+    public Operando(String valor, int base){        
         this.base = base;
         this.sistema = new SistemaNumerico(base);
         this.posicionPunto = valor.indexOf(".");
-        this.racional = (this.posicionPunto != -1);        
+        this.racional = (this.posicionPunto != -1);
+        this.negativo = (valor.matches("-[0-9,A-H,J-N,P-X]*.[0-9,A-H,J-N,P-X]*") || valor.matches("-[0-9,A-H,J-N,P-X]*"));
+        if(this.negativo){
+            this.valor = valor.substring(1);
+        }else{
+            this.valor = valor;
+        }
     }
 
     public String getValor() {
@@ -65,7 +71,15 @@ public class Operando {
     public void setPosicionPunto(int posicionPunto) {
         this.posicionPunto = posicionPunto;
     }
-    
+
+    public boolean isNegativo() {
+        return negativo;
+    }
+
+    public void setNegativo(boolean negativo) {
+        this.negativo = negativo;
+    }
+        
     /*FUNCION QUE FABRICA EL NUMERO A PARTIR DE LAS CIFRAS MANDADAS COMO PARAMETRO Y EL SISTEMA CORRESPONDIENTE*/
     public String fabricarNumero(ArrayList cifraTemporal, SistemaNumerico sistema){        
         int i, j, posi, posj, tam = cifraTemporal.size();        
@@ -91,7 +105,7 @@ public class Operando {
             posi = Integer.parseInt(resultadoTemporal.get(i));
             numeroFabricado = numeroFabricado + sistema.getDigitos().get(posi);
             i++;
-        } 
+        }        
         
         return numeroFabricado;
     }

@@ -117,6 +117,7 @@ public class Conversion {
         
         /*crea el numero como tal y lo asigna como valor al resualtado final*/
         String resultadoTemporal = this.resultadoConversion.fabricarNumero(cifraTemporal, this.resultadoConversion.getSistema());
+        if(this.numeroConvertir.isNegativo()) resultadoTemporal = "-" + resultadoTemporal;
         this.resultadoConversion.setValor(resultadoTemporal);   
     }
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A BASE 10 */
@@ -147,7 +148,7 @@ public class Conversion {
         }else{
             resultadoTemporal = String.valueOf((int)sumatoria);
         }        
-        
+        if(this.numeroConvertir.isNegativo()) resultadoTemporal = "-" + resultadoTemporal;
         this.resultadoConversion.setValor(resultadoTemporal);        
     }    
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A OTRA BASE SOPORTADA QUE NO SEA 10*/
