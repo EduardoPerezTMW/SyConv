@@ -36,5 +36,9 @@ public class pruebas {
         
         double prueba = Double.parseDouble("-" + operando1.getValor());
         System.out.println(operando1.isNegativo() + " " + operando1.getValor() + prueba);
+        double a,b,c;
+        a = 0; b = 1.254;
+        c = a-b;
+        System.out.println(String.valueOf(c));
     }
 }

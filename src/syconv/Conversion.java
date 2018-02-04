@@ -63,6 +63,7 @@ public class Conversion {
                 this.resultadoConversion.setBase(this.numeroConvertir.getBase()); 
                 this.resultadoConversion.setPosicionPunto(this.numeroConvertir.getPosicionPunto());
                 this.resultadoConversion.setRacional(this.numeroConvertir.isRacional());
+                this.resultadoConversion.setNegativo(this.numeroConvertir.isNegativo());
         }   
     }
     
@@ -116,8 +117,8 @@ public class Conversion {
         }                
         
         /*crea el numero como tal y lo asigna como valor al resualtado final*/
-        String resultadoTemporal = this.resultadoConversion.fabricarNumero(cifraTemporal, this.resultadoConversion.getSistema());
-        if(this.numeroConvertir.isNegativo()) resultadoTemporal = "-" + resultadoTemporal;
+        String resultadoTemporal = this.resultadoConversion.fabricarNumero(cifraTemporal, this.resultadoConversion.getSistema());        
+        this.resultadoConversion.setNegativo(this.numeroConvertir.isNegativo());
         this.resultadoConversion.setValor(resultadoTemporal);   
     }
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A BASE 10 */
@@ -142,13 +143,13 @@ public class Conversion {
         /*termina de formar el numero si es racional y si no solo convierte el double a string sin decimales*/    
         if(this.numeroConvertir.isRacional()){
             this.resultadoConversion.setRacional(this.numeroConvertir.isRacional());
-            this.resultadoConversion.setPosicionPunto(this.numeroConvertir.getPosicionPunto());   
+            this.resultadoConversion.setPosicionPunto(this.numeroConvertir.getPosicionPunto());               
             int numeroDec = this.numeroConvertir.obtenerDecimales().length() + 1; //resultadoTemporal = String.valueOf(sumatoria);
             resultadoTemporal = String.valueOf(sumatoria).substring(0, this.numeroConvertir.getPosicionPunto() + numeroDec);
         }else{
             resultadoTemporal = String.valueOf((int)sumatoria);
         }        
-        if(this.numeroConvertir.isNegativo()) resultadoTemporal = "-" + resultadoTemporal;
+        this.resultadoConversion.setNegativo(this.numeroConvertir.isNegativo());
         this.resultadoConversion.setValor(resultadoTemporal);        
     }    
     /*METODO QUE REALIZA LA CONVERSION DE CUALQUIER BASE SOPORTADA A OTRA BASE SOPORTADA QUE NO SEA 10*/
@@ -158,7 +159,7 @@ public class Conversion {
     */    
     public void cualquierBase_CualquierBase(){ 
         int baseTemp = this.resultadoConversion.getBase();//para recordar la base del resultado
-        this.cualquierBase_Base10(); 
+        this.cualquierBase_Base10();        
         this.resultadoConversion.setBase(10); // para actualizar la base y obtener un resultado intermedio
         this.numeroConvertir = this.resultadoConversion; // el resultado de la conversion anterior se vuelve el nuevo numero a convertir
         this.resultadoConversion = new Operando("", baseTemp);// se actualiza el objeto resultado final para obtener el definitivo

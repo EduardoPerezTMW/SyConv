@@ -316,7 +316,11 @@ public class Inicio extends javax.swing.JFrame {
             conversion = new Conversion(new Operando(numero, Integer.parseInt(baseInicial)), new Operando("", Integer.parseInt(baseFinal))); 
             if(conversion.getNumeroConvertir().baseCorrespondiente()){
                 conversion.convertir();
-                txtNumeroFinal.setText(conversion.getResultadoConversion().getValor());
+                if(conversion.getResultadoConversion().isNegativo()){
+                    txtNumeroFinal.setText("-" + conversion.getResultadoConversion().getValor());
+                }else{
+                    txtNumeroFinal.setText(conversion.getResultadoConversion().getValor());
+                }                
             }else{ txtNumeroInicial.setText("El numero no coincide con la base"); }            
         }
         conversion = null;
@@ -342,7 +346,11 @@ public class Inicio extends javax.swing.JFrame {
             if(operacion.getOperandos().get(0).baseCorrespondiente()){//comprueba el primer operando
                 if(operacion.getOperandos().get(1).baseCorrespondiente()){//comprueba el segundo operando                    
                     operacion.Operar();
-                    txtResultado.setText(operacion.getResultadoOperacion().getValor()); 
+                    if(operacion.getResultadoOperacion().isNegativo()){
+                        txtResultado.setText("-" + operacion.getResultadoOperacion().getValor()); 
+                    }else{
+                        txtResultado.setText(operacion.getResultadoOperacion().getValor()); 
+                    }                     
                     txtBaseResultado.setText(String.valueOf(operacion.getResultadoOperacion().getBase()));
                 }else{ txtOperando2.setText("El numero no coincide con la base"); }                                
             }else{ txtOperando1.setText("El numero no coincide con la base"); }            

@@ -67,30 +67,30 @@ public class Operacion {
     /*OPERACION QUE REALIZA LA SUMA DE LOS NUMEROS*/
     public void realizarSuma(){   
         double op1, op2, r;
-        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
-        //this.convertirOperando(a, 10).getValor();         
-        //this.convertirOperando(b, 10).getValor();
+        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                                
         
         op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
         op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
+        if(a.isNegativo()){ op1 = -op1; }        
+        if(b.isNegativo()){ op2 = -op2; }        
         r = op1 + op2;        
         
-        if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
+        if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                            
             opaux = new Operando(String.valueOf(r), 10);            
         }else{
             opaux = new Operando(String.valueOf((int)r), 10);                    
         }        
+        
         this.resultadoOperacion = convertirOperando(opaux, this.baseOperacion);        
     }
     /*OPERACION QUE REALIZA LA RESTA DE LOS NUMEROS*/
     public void realizarResta(){
         double op1, op2, r;
-        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
-        this.convertirOperando(a, 10);         
-        this.convertirOperando(b, 10);
-        
+        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;        
         op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
         op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
+        if(a.isNegativo()){ op1 = -op1; }        
+        if(b.isNegativo()){ op2 = -op2; } 
         r = op1 - op2;        
         
         if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
@@ -103,12 +103,12 @@ public class Operacion {
     /*OPERACION QUE REALIZA LA MULTIPLICACION DE LOS NUMEROS*/
     public void realizarMultiplicacion(){
         double op1, op2, r;
-        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
-        this.convertirOperando(a, 10);         
-        this.convertirOperando(b, 10);
+        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;
         
         op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
         op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
+        if(a.isNegativo()){ op1 = -op1; }        
+        if(b.isNegativo()){ op2 = -op2; }
         r = op1 * op2;        
         
         if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
@@ -121,12 +121,12 @@ public class Operacion {
     /*OPERACION QUE REALIZA LA DIVISION DE LOS NUMEROS*/
     public void realizarDivision(){
         double op1, op2, r;
-        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;                        
-        this.convertirOperando(a, 10);         
-        this.convertirOperando(b, 10);
+        Operando a = this.operandos.get(0), b = this.operandos.get(1), opaux = null;
         
         op1 = Double.parseDouble(this.convertirOperando(a, 10).getValor());
         op2 = Double.parseDouble(this.convertirOperando(b, 10).getValor());
+        if(a.isNegativo()){ op1 = -op1; }        
+        if(b.isNegativo()){ op2 = -op2; }
         r = op1 / op2;        
         
         if(this.operandos.get(0).isRacional() || this.operandos.get(1).isRacional()){                                                
