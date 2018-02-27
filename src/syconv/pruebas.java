@@ -40,5 +40,8 @@ public class pruebas {
         a = 0; b = 1.254;
         c = a-b;
         System.out.println(String.valueOf(c));
+        System.out.println(Math.pow(10, 1.24572142124211));
+        double x1 = 1.245721421242110019473523153;
+        System.out.printf("%.20f", x1);
     }
 }

@@ -22,8 +22,8 @@ public class Operando {
     public Operando(String valor, int base){        
         this.base = base;
         this.sistema = new SistemaNumerico(base);
-        this.posicionPunto = valor.indexOf(".");
-        this.racional = (this.posicionPunto != -1);
+        this.posicionPunto = valor.indexOf("."); //+ 1;
+        this.racional = (this.posicionPunto != -1);//((this.posicionPunto - 1) != -1);
         this.negativo = (valor.matches("-[0-9,A-H,J-N,P-X]*.[0-9,A-H,J-N,P-X]*") || valor.matches("-[0-9,A-H,J-N,P-X]*"));
         if(this.negativo){
             this.valor = valor.substring(1);
@@ -129,7 +129,7 @@ public class Operando {
     public boolean baseCorrespondiente(){        
         boolean corresponde = true;
         for(int i = 0; i < this.valor.length(); i++){            
-            if(i == this.posicionPunto) i++;
+            if(i == (this.posicionPunto)) i++;
             if(this.sistema.getDigitos().indexOf(this.valor.charAt(i)) == -1){ corresponde = false; break; }            
         }//si hay un solo digito que no se encuentre en los digitos del sistema entonces el numero no corresponde
         return corresponde;
