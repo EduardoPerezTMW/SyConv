@@ -5,6 +5,8 @@
  */
 package ventanas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.lang.Integer;
 import syconv.Conversion;
@@ -20,14 +22,11 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     //private boolean hayErroresConversion;
-    private ArrayList<String> datosConversiones;
-    private ArrayList<String> datosOperaciones;
+    //private ArrayList<String> datosConversiones;
+    //private ArrayList<String> datosOperaciones;
     
     public Inicio() {
-        initComponents();       
-        //this.hayErroresConversion = false;
-        this.datosConversiones = new ArrayList<String>();
-        this.datosOperaciones = new ArrayList<String>();
+        initComponents();//this.hayErroresConversion = false; //this.datosConversiones = new ArrayList<String>(); //this.datosOperaciones = new ArrayList<String>();
     }
 
     /**
@@ -70,10 +69,17 @@ public class Inicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SyConv");
+        setIconImage(getIconImage());
         setLocation(new java.awt.Point(100, 100));
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Convertir"));
+
+        txtNumeroInicial.setToolTipText("ingrese el numero a convertir");
+
+        txtBaseInicial.setToolTipText("base del numero que quieres convertir");
+
+        txtBaseFinal.setToolTipText("base a la cual quieres convertir");
 
         jLabel1.setText("Número:");
 
@@ -89,6 +95,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         txtNumeroFinal.setEditable(false);
+        txtNumeroFinal.setToolTipText("numero convertido");
         txtNumeroFinal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroFinalActionPerformed(evt);
@@ -160,18 +167,28 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        txtOperando2.setToolTipText("ingresa el segundo operando");
         txtOperando2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOperando2ActionPerformed(evt);
             }
         });
 
+        txtBaseOperacion.setToolTipText("base que quieres para el resultado");
+
         txtResultado.setEditable(false);
+        txtResultado.setToolTipText("resultado de la operacion");
         txtResultado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtResultadoActionPerformed(evt);
             }
         });
+
+        txtBase2.setToolTipText("base del segundo operando");
+
+        txtOperando1.setToolTipText("ingresa el primer operando");
+
+        txtBase1.setToolTipText("base del primer operando");
 
         comboxOperacion.setMaximumRowCount(4);
         comboxOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-", "*", "/" }));
@@ -182,6 +199,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         txtBaseResultado.setEditable(false);
+        txtBaseResultado.setToolTipText("base del resultado");
 
         jLabel9.setText("Base:");
 
@@ -306,6 +324,12 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("ventanas/syconv-icon.png"));
+        return retValue;
+    }
     private void txtNumeroFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroFinalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroFinalActionPerformed
@@ -341,13 +365,12 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnOperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperarActionPerformed
         // TODO add your handling code here:
-        String a, b, baseA, baseB, resultado, baseOperacion, signo;
+        String a, b, baseA, baseB, baseOperacion, signo;//resultado
         a = txtOperando1.getText();        
         b = txtOperando2.getText();
         signo = String.valueOf(comboxOperacion.getSelectedItem());
         baseA = txtBase1.getText();
-        baseB = txtBase2.getText();
-        resultado = txtResultado.getText();
+        baseB = txtBase2.getText();//resultado = txtResultado.getText();
         baseOperacion = txtBaseOperacion.getText();
         Operacion operacion = null;
         //comprobar si hay errores en los datos ingresados
@@ -376,7 +399,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-        javax.swing.JOptionPane.showMessageDialog(rootPane, "SyConv 1.41 - lanzamiento de prueba\nCreado por GaroMaster\nCualquier sugerencia o comentarios(reclamo jeje)\nal correo troymasterwin001@gmail.com", "Acerca de", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        javax.swing.JOptionPane.showMessageDialog(rootPane, "SyConv 1.43 - lanzamiento de prueba\nCreado por GaroMaster\nCualquier sugerencia o comentarios(reclamo jeje)\nal correo troymasterwin001@gmail.com", "Acerca de", javax.swing.JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jLabel12MouseClicked
        
     /**
@@ -388,13 +411,9 @@ public class Inicio extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+        try {            
+            javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel"); 
+            //for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {if ("Windows".equals(info.getName())) {javax.swing.UIManager.setLookAndFeel(info.getClassName());break;}}
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -417,28 +436,46 @@ public class Inicio extends javax.swing.JFrame {
     /*SECCION DE METODOS PARA MANEJO DE ERRORES*/
     
     /*Comprueba si hay errores en los datos de la conversion*/
-    boolean hayErroresConversion(String baseInicial, String baseFinal, String numero){
+    boolean hayErroresConversion(String baseInicial, String baseFinal, String numero){        
         //Comprueba si no se ingreso un dato
         if(baseInicial.isEmpty() || baseFinal.isEmpty() || numero.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(rootPane, "Debes ingresar los campos requeridos.", "Campo Vacío", HEIGHT);
             return true;
         }
-        //Comprueba si las bases son positivas(ya que por ahorita no soporta bases negativas)
-        if(Integer.parseInt(baseInicial) <= 0 || Integer.parseInt(baseFinal) <= 0){
-            javax.swing.JOptionPane.showMessageDialog(rootPane, "Bases no validas.", "Error de Bases", HEIGHT);
+        
+        //Comprueba que las bases no sean racionales
+        if(baseInicial.contains(".") || baseFinal.contains(".")){
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Las bases deben ser enteras.", "Error de Bases", HEIGHT);
             return true;
         }
+
+        //Comprueba si las bases son positivas(ya que por ahorita no soporta bases negativas)
+        if(Integer.parseInt(baseInicial) <= 0 || Integer.parseInt(baseFinal) <= 0 || Integer.parseInt(baseInicial) > 32 || Integer.parseInt(baseFinal) > 32){
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Bases no validas.", "Error de Bases", HEIGHT);
+            return true;
+        }        
         
         return false;
     }
     /*Comprueba si hay errores en los datos para hacer una operacion*/
     public boolean hayErroresOperacion(String numero1, String numero2, String base1, String base2, String baseOperacion){
         //comprueba se no se ha ingresado un dato
-        if(numero1.isEmpty() || numero2.isEmpty() || base1.isEmpty() || base2.isEmpty()){
+        if(numero1.isEmpty() || numero2.isEmpty() || base1.isEmpty() || base2.isEmpty() || baseOperacion.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(rootPane, "Debes ingresar los campos requeridos.", "Campo Vacío", HEIGHT);
             return true;
         }
         
+        //Comprueba que las bases no sean racionales
+        if(base1.contains(".") || base2.contains(".") || baseOperacion.contains(".")){
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Las bases deben ser enteras.", "Error de Bases", HEIGHT);
+            return true;
+        }
+        
+        //Comprueba si las bases son positivas(ya que por ahorita no soporta bases negativas)
+        if(Integer.parseInt(base1) <= 0 || Integer.parseInt(base2) <= 0 || Integer.parseInt(baseOperacion) <= 0 || Integer.parseInt(base1) > 32 || Integer.parseInt(base2) > 32 || Integer.parseInt(baseOperacion) > 32){
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Bases no validas.", "Error de Bases", HEIGHT);
+            return true;
+        }        
         return false;
     }
 
